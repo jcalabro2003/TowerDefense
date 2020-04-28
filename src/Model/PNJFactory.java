@@ -1,8 +1,10 @@
 package Model;
 
+import org.jetbrains.annotations.NotNull;
+
 public class PNJFactory {
 
-    public static PNJ getInstance(String type){
+    public static PNJ getInstance(@NotNull String type){
         PNJ res = null;
         switch (type){
             case ("basic"):

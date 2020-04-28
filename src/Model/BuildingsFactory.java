@@ -8,9 +8,10 @@ public class BuildingsFactory {
         Building res = null;
         switch (type){
             case "classic tower":
-                res = new Tower(5, 10, 1);
+                res = new Tower(5, 10, 1000);
                 break;
-
+            case "slow tower":
+                res = new Tower(0, 10, 1500);
 
             default:
                 break;

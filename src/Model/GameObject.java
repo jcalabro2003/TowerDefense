@@ -2,11 +2,16 @@ package Model;
 
 public abstract class GameObject {
 
+
+    protected Map map = Map.getInstance(1080, 720);
     protected int posX;
-    protected int PosY;
+    protected int posY;
 
+    public GameObject(){
+        map.addGameObject(this);
+    }
 
-    public int getPosX() {
+    public double getPosX() {
         return posX;
     }
 
@@ -14,11 +19,11 @@ public abstract class GameObject {
         this.posX = posX;
     }
 
-    public int getPosY() {
-        return PosY;
+    public double getPosY() {
+        return posY;
     }
 
     public void setPosY(int posY) {
-        PosY = posY;
+        this.posY = posY;
     }
 }

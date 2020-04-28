@@ -4,7 +4,7 @@ package Model;
 
 import java.util.ArrayList;
 
-public class Tower extends Building implements Runnable{
+public class Tower extends Building implements Runnable, Updatable{
 
     private int damage;
     private int range;
@@ -21,16 +21,43 @@ public class Tower extends Building implements Runnable{
 
     }
 
+    public void addPnjInRange(PNJ pnj){
+        pnjsInRange.add(pnj);
+    }
+
+    public PNJ getNearest(){
+        PNJ res = null;
+        double distance = 0;
+        for(int i=0; i<pnjsInRange.size(); i++){
+            if (i == 0){
+                distance = pnjsInRange.get(i).getDistance(this);
+                res = pnjsInRange.get(i);
+            } else {
+                if (distance > pnjsInRange.get(i).getDistance(this)){
+                    distance = pnjsInRange.get(i).getDistance(this);
+                    res = pnjsInRange.get(i);
+                }
+            }
+        }
+        return res;
+    }
+
     public void shoot(PNJ pnj){
-            Projectile newProjectile = new Projectile(pnj);
+            Projectile newProjectile = new Projectile(pnj, damage);
     }
 
     @Override
     public void run() {
         try {
+            shoot(getNearest());
             Thread.sleep(reloading);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void update() {
+
     }
 }
