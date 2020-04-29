@@ -11,6 +11,7 @@ public class Tower extends Building implements Runnable, Updatable{
     private int reloading;
     private Thread thread;
     private ArrayList<PNJ> pnjsInRange = new ArrayList<>();
+    private int level;
 
     public Tower(int damage, int range, int reloading){
         super();
@@ -18,6 +19,7 @@ public class Tower extends Building implements Runnable, Updatable{
         this.range = range;
         this.reloading = reloading;
         this.thread.start();
+        this.level = 1;
 
     }
 
@@ -58,6 +60,15 @@ public class Tower extends Building implements Runnable, Updatable{
 
     @Override
     public void update() {
-
+        if (level == 1){
+            level++;
+            damage += damage/3;
+        }
+        else if(level == 2){
+            reloading -= reloading/3;
+        }
+        else {
+            range += range/3;
+        }
     }
 }
