@@ -7,6 +7,7 @@ public class Map {
     private ArrayList<GameObject> gameObjects = new ArrayList<>();
     private int width;
     private int height;
+    private ArrayList<Path> paths = new ArrayList<>();
 
     private Map(int width, int height){
         this.width = width;
@@ -22,5 +23,13 @@ public class Map {
 
     public void addGameObject(GameObject g){
         gameObjects.add(g);
+    }
+
+    public void setPaths(ArrayList<Path> paths) {
+        this.paths = paths;
+    }
+
+    public ArrayList<Path> getPaths() {
+        return paths;
     }
 }
